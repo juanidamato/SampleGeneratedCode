@@ -1,4 +1,8 @@
 using SampleGeneratedCodeApplication;
+using SampleGeneratedCodeApplication.Commons.Interfaces.Infrastructure;
+using SampleGeneratedCodeApplication.Commons.Interfaces.Repositories;
+using SampleGeneratedCodeInfrastructure;
+using SampleGeneratedCodeInfrastructure.Repositories;
 
 namespace SampleGeneratedCodeAPI
 {
@@ -11,6 +15,16 @@ namespace SampleGeneratedCodeAPI
             // Add services to the container.
 
             builder.Services.AddSampleGeneratedCodeApplication();
+
+
+            //persistence
+            builder.Services.AddTransient<IDatabaseHelper, SQLDatabaseHelper>();
+
+
+            //repositories
+            builder.Services.AddTransient<IProductRepository, ProductRepository>();
+
+
 
 
             builder.Services.AddControllers();

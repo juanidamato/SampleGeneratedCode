@@ -4,7 +4,8 @@ using System.Reflection;
 using MediatR;
 using System;
 using AutoMapper;
-
+using SampleGeneratedCodeApplication.Commons.Interfaces.Infrastructure;
+using SampleGeneratedCodeApplication.Commons.Interfaces.Repositories;
 
 namespace SampleGeneratedCodeApplication
 {
@@ -18,6 +19,10 @@ namespace SampleGeneratedCodeApplication
             {
                 cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
             });
+
+           
+
+
             return services;
         }
     }

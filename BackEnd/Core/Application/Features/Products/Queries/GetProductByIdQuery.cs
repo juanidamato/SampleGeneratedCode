@@ -8,7 +8,7 @@ using MediatR;
 using FluentValidation;
 using SampleGeneratedCodeDomain.Entities;
 using SampleGeneratedCodeApplication.Commons.Utils;
-
+using SampleGeneratedCodeApplication.Commons.Interfaces.Repositories;
 
 namespace SampleGeneratedCodeApplication.Features.Products.Queries
 {
@@ -59,15 +59,19 @@ namespace SampleGeneratedCodeApplication.Features.Products.Queries
     public class GetProductByIdQueryHandler : IRequestHandler<GetProductByIdQuery, GetProductByIdQueryResponse>
     {
         private readonly IMapper _mapper;
+        private readonly IProductRepository _productRepo;
 
-        public GetProductByIdQueryHandler(IMapper mapper)
+        public GetProductByIdQueryHandler(IMapper mapper,IProductRepository productRepo)
         {
             _mapper = mapper;
+            _productRepo = productRepo;
         }
 
         public async Task<GetProductByIdQueryResponse> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
         {
-            await Task.Delay(1);
+            ProductEntity? oneProduct;
+
+           
             GetProductByIdQueryValidator validator = new GetProductByIdQueryValidator();
            
             var validationResult=validator.Validate(request);
@@ -77,12 +81,9 @@ namespace SampleGeneratedCodeApplication.Features.Products.Queries
                 await Task.Delay(1);
             }
 
-            ProductEntity oneProduct = new ProductEntity();
-            oneProduct.IdProduct = "prod1";
-            oneProduct.Description = "producto 1";
-            oneProduct.IdCategory = "cat1";
-            oneProduct.Price = 1500.25M;
-            oneProduct.Notes = "interesting notes";
+            oneProduct = await _productRepo.GetByIdAsync(request.Id);
+            
+
             return _mapper.Map<GetProductByIdQueryResponse>(oneProduct);
         }
     }

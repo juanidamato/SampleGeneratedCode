@@ -20,16 +20,23 @@ namespace SampleGeneratedCodeInfrastructure.Repositories
             _db = db;
         }
 
-        public async Task<ProductEntity?> GetByIdAsync(string id)
+        public async Task<(bool,ProductEntity?)> GetByIdAsync(string id)
         {
-            var r= await _db.GetArrayDataAsync<ProductEntity,dynamic>( "Product_GetById", new { IdProduct = id });
-            if (r is  null)
+            try
             {
-                return null;
-            }
-            var element = r.FirstOrDefault<ProductEntity?>();
-            return element;
+                var r = await _db.GetArrayDataAsync<ProductEntity, dynamic>("Product_GetById", new { IdProduct = id });
+             
+                var element = r.FirstOrDefault<ProductEntity?>();
+                return (true,element);
 
+            }
+            catch (Exception ex)
+            {
+                //todo
+                return (false, null);
+            }
+            
+           
         }
     }
 }

@@ -9,6 +9,6 @@ namespace SampleGeneratedCodeApplication.Commons.Interfaces.Repositories
 {
     public interface IProductRepository
     {
-        public Task<ProductEntity?> GetByIdAsync(string id);
+        public Task<(bool,ProductEntity?)> GetByIdAsync(string id);
     }
 }

@@ -13,7 +13,7 @@ using SampleGeneratedCodeApplication.Commons.Interfaces.Repositories;
 namespace SampleGeneratedCodeApplication.Features.Products.Queries
 {
     //Request
-    public class GetProductByIdQuery: IRequest<GetProductByIdQueryResponse>
+    public class GetProductByIdQuery : IRequest<GetProductByIdQueryResponse>
     {
         public string Id { get; set; } = string.Empty;
 
@@ -38,13 +38,13 @@ namespace SampleGeneratedCodeApplication.Features.Products.Queries
                 .ForMember(dest => dest.IdProduct, opt => opt.MapFrom(map => map.IdProduct))
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(map => map.Description))
                 .ForMember(dest => dest.IdCategory, opt => opt.MapFrom(map => map.IdCategory))
-                .ForMember(dest => dest.Price, opt => opt.MapFrom(map => map.Price*2))
+                .ForMember(dest => dest.Price, opt => opt.MapFrom(map => map.Price * 2))
                 .ForMember(dest => dest.Notes, opt => opt.MapFrom(map => map.Notes));
         }
     }
 
     //Validator
-    public class GetProductByIdQueryValidator:AbstractValidator<GetProductByIdQuery>
+    public class GetProductByIdQueryValidator : AbstractValidator<GetProductByIdQuery>
     {
         public GetProductByIdQueryValidator()
         {
@@ -61,7 +61,7 @@ namespace SampleGeneratedCodeApplication.Features.Products.Queries
         private readonly IMapper _mapper;
         private readonly IProductRepository _productRepo;
 
-        public GetProductByIdQueryHandler(IMapper mapper,IProductRepository productRepo)
+        public GetProductByIdQueryHandler(IMapper mapper, IProductRepository productRepo)
         {
             _mapper = mapper;
             _productRepo = productRepo;
@@ -70,19 +70,23 @@ namespace SampleGeneratedCodeApplication.Features.Products.Queries
         public async Task<GetProductByIdQueryResponse> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
         {
             ProductEntity? oneProduct;
+            bool bolR;
 
-           
             GetProductByIdQueryValidator validator = new GetProductByIdQueryValidator();
-           
-            var validationResult=validator.Validate(request);
-            if(!validationResult.IsValid)
+
+            var validationResult = validator.Validate(request);
+            if (!validationResult.IsValid)
             {
                 //todo
                 await Task.Delay(1);
             }
 
-            oneProduct = await _productRepo.GetByIdAsync(request.Id);
-            
+            (bolR, oneProduct) = await _productRepo.GetByIdAsync(request.Id);
+            if (!bolR)
+            {
+                //todo
+            }
+
 
             return _mapper.Map<GetProductByIdQueryResponse>(oneProduct);
         }

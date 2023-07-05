@@ -1,7 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SampleGeneratedCodeAPI.Utils;
 using SampleGeneratedCodeApplication.Features.Products.Queries;
+
 
 namespace SampleGeneratedCodeAPI.Controllers
 {
@@ -18,19 +20,18 @@ namespace SampleGeneratedCodeAPI.Controllers
 
         [HttpGet]
         [Route("api/product/{id}")]
-        public async Task<ActionResult<GetProductByIdQueryResponse>> GetProductbyId(string id)
+        public async Task<ActionResult> GetProductbyId(string id)
         {
             GetProductByIdQuery query = new GetProductByIdQuery();
             GetProductByIdQueryResponse result;
+            HttpMapperResultUtil mapperResultUtil = new();
             query.Id = id;
 
-            result=await _mediator.Send(query);
-            if (result==null)
-            {
-                return NotFound();
-            }
-            return Ok(result);
+            result = await _mediator.Send(query);
+            return mapperResultUtil.MapToActionResult(result);
 
         }
+
+       
     }
 }

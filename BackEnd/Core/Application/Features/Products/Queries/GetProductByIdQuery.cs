@@ -48,7 +48,7 @@ namespace SampleGeneratedCodeApplication.Features.Products.Queries
                 .ForMember(dest => dest.IdProduct, opt => opt.MapFrom(map => map.IdProduct))
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(map => map.Description))
                 .ForMember(dest => dest.IdCategory, opt => opt.MapFrom(map => map.IdCategory))
-                .ForMember(dest => dest.Price, opt => opt.MapFrom(map => map.Price * 2))
+                .ForMember(dest => dest.Price, opt => opt.MapFrom(map => map.Price ))
                 .ForMember(dest => dest.Notes, opt => opt.MapFrom(map => map.Notes));
         }
     }

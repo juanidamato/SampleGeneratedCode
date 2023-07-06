@@ -9,7 +9,7 @@
 
 <ul>
    <li>Fluent Validation</li>
-   <li>MediaR</li> 
+   <li>MediatR</li> 
    <li>Automapper</li> 
    <li>Dapper</li> 
 </ul>

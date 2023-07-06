@@ -5,57 +5,93 @@ using SampleGeneratedCodeApplication.Commons.Interfaces.Infrastructure;
 using SampleGeneratedCodeApplication.Commons.Interfaces.Repositories;
 using SampleGeneratedCodeInfrastructure;
 using SampleGeneratedCodeInfrastructure.Repositories;
+using Serilog;
+using Serilog.Core;
+using Serilog.Events;
 
 namespace SampleGeneratedCodeAPI
 {
     public class Program
     {
+        private static LoggingLevelSwitch? _levelSwitch;
+
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
-            // Add services to the container.
-
-            builder.Services.AddSampleGeneratedCodeApplication();
-
-
-
-
-            //persistence helper
-            builder.Services.AddTransient<IDatabaseHelper, SQLDatabaseHelper>();
-
-
-            //repositories
-            builder.Services.AddTransient<IProductRepository, ProductRepository>();
-
-            //managers
-            builder.Services.AddTransient<IProductManager, ProductManager>();
-
-
-
-
-            builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
-
-            var app = builder.Build();
-
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
+            
+            
+            _levelSwitch = new LoggingLevelSwitch();
+            Console.WriteLine($"Environment:{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}");
+            if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
             {
-                app.UseSwagger();
-                app.UseSwaggerUI();
+                _levelSwitch.MinimumLevel = LogEventLevel.Information;
+            }
+            else
+            {
+                _levelSwitch.MinimumLevel = LogEventLevel.Warning;
             }
 
-            app.UseHttpsRedirection();
+            builder.Host.UseSerilog();
 
-            app.UseAuthorization();
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.ControlledBy(_levelSwitch)
+                .Enrich.FromLogContext()
+                .WriteTo.Console()
+                .CreateLogger();
+
+            try
+            {
+                Log.Information("Starting Sample generated code with clean architecture...");
+
+                // Add services to the container.
+                builder.Services.AddSampleGeneratedCodeApplication();
+
+                //persistence helper
+                builder.Services.AddTransient<IDatabaseHelper, SQLDatabaseHelper>();
+
+                //repositories
+                builder.Services.AddTransient<IProductRepository, ProductRepository>();
+
+                //managers
+                builder.Services.AddTransient<IProductManager, ProductManager>();
+
+                //other services
+                builder.Services.AddControllers();
+                // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+                builder.Services.AddEndpointsApiExplorer();
+                builder.Services.AddSwaggerGen();
+
+                var app = builder.Build();
+
+                // Configure the HTTP request pipeline.
+                if (app.Environment.IsDevelopment())
+                {
+                    app.UseSwagger();
+                    app.UseSwaggerUI();
+                }
+
+                app.UseHttpsRedirection();
+
+                app.UseAuthorization();
 
 
-            app.MapControllers();
+                app.MapControllers();
 
-            app.Run();
+                app.Run();
+
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal(ex, "Host terminated unexpectedly");
+            }
+            finally
+            {
+                Log.CloseAndFlush();
+            }
+        }
+        public static void changeLogLevel(LogEventLevel newLogLevel)
+        {
+            _levelSwitch!.MinimumLevel = newLogLevel;
         }
     }
 }

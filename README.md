@@ -7,16 +7,16 @@
 ### It uses well known external tools as:
 
 <ul>
-  <li>-Fluent Validation</li>
-   <li>-MediaR
-   <li>-Automapper
-   <li>-Dapper
-   </li>
+   <li>Fluent Validation</li>
+   <li>MediaR</li> 
+   <li>Automapper</li> 
+   <li>Dapper</li> 
 </ul>
+
 ### Pending to implement:
 
 <ul>
- <li>-Telemetry</li> 
- <li>-Logs</li>
- <li>-Other Utils interfaces and their implementations</li>
+ <li>Telemetry</li> 
+ <li>Logs</li>
+ <li>Other Utils interfaces and their implementations</li>
 </ul>

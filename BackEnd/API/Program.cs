@@ -1,4 +1,6 @@
 using SampleGeneratedCodeApplication;
+using SampleGeneratedCodeApplication.BLL;
+using SampleGeneratedCodeApplication.Commons.Interfaces.BLL;
 using SampleGeneratedCodeApplication.Commons.Interfaces.Infrastructure;
 using SampleGeneratedCodeApplication.Commons.Interfaces.Repositories;
 using SampleGeneratedCodeInfrastructure;
@@ -17,12 +19,17 @@ namespace SampleGeneratedCodeAPI
             builder.Services.AddSampleGeneratedCodeApplication();
 
 
-            //persistence
+
+
+            //persistence helper
             builder.Services.AddTransient<IDatabaseHelper, SQLDatabaseHelper>();
 
 
             //repositories
             builder.Services.AddTransient<IProductRepository, ProductRepository>();
+
+            //managers
+            builder.Services.AddTransient<IProductManager, ProductManager>();
 
 
 

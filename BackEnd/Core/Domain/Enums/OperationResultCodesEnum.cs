@@ -10,10 +10,12 @@ namespace SampleGeneratedCodeDomain.Enums
     {
         OK=200,
         CREATED=201,
-        NOT_AUTHORIZED=401,
+        ACCEPTED = 202,
+        NOT_AUTHORIZED =401,
         BAD_REQUEST=400,
         FORBIDDEN=403,
         NOT_FOUND=404,
+        DUPLICATE=409,
         SERVER_ERROR=500
     }
 }

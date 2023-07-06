@@ -25,6 +25,8 @@ namespace SampleGeneratedCodeAPI.Utils
                     return new GenericObjectResult(200, result2);
                 case OperationResultCodesEnum.CREATED:
                     return new GenericObjectResult(201, result2);
+                        case OperationResultCodesEnum.ACCEPTED:
+                    return new GenericObjectResult(202, result2);
                 case OperationResultCodesEnum.BAD_REQUEST:
                     return new GenericObjectResult(400, result2);
                 case OperationResultCodesEnum.NOT_AUTHORIZED:
@@ -33,6 +35,8 @@ namespace SampleGeneratedCodeAPI.Utils
                     return new GenericObjectResult(403, result2);
                 case OperationResultCodesEnum.NOT_FOUND:
                     return new GenericObjectResult(404, result2);
+                case OperationResultCodesEnum.DUPLICATE:
+                    return new GenericObjectResult(409, result2);
                 case OperationResultCodesEnum.SERVER_ERROR:
                     return new GenericObjectResult(500, result2);
                 default:

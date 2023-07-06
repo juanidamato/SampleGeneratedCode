@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using SampleGeneratedCodeApplication.Commons.Attributes;
 using SampleGeneratedCodeApplication.Commons.Interfaces.Infrastructure;
 using SampleGeneratedCodeApplication.Commons.Interfaces.Repositories;
 using SampleGeneratedCodeDomain.Entities;
@@ -20,6 +21,7 @@ namespace SampleGeneratedCodeInfrastructure.Repositories
             _db = db;
         }
 
+        [TraceAndTime]
         public async Task<(bool,ProductEntity?)> GetByIdAsync(string id)
         {
             try

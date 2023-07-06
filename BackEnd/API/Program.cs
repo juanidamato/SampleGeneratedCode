@@ -1,5 +1,7 @@
+using Castle.DynamicProxy;
 using SampleGeneratedCodeApplication;
 using SampleGeneratedCodeApplication.BLL;
+using SampleGeneratedCodeApplication.Commons.Attributes;
 using SampleGeneratedCodeApplication.Commons.Interfaces.BLL;
 using SampleGeneratedCodeApplication.Commons.Interfaces.Infrastructure;
 using SampleGeneratedCodeApplication.Commons.Interfaces.Repositories;
@@ -44,16 +46,20 @@ namespace SampleGeneratedCodeAPI
                 Log.Information("Starting Sample generated code with clean architecture...");
 
                 // Add services to the container.
+                // Setup Interception
+                builder.Services.AddSingleton(new ProxyGenerator());
+                builder.Services.AddTransient<IInterceptor, TraceAndTimeAttibuteInterceptor>();
+
                 builder.Services.AddSampleGeneratedCodeApplication();
 
                 //persistence helper
                 builder.Services.AddTransient<IDatabaseHelper, SQLDatabaseHelper>();
 
                 //repositories
-                builder.Services.AddTransient<IProductRepository, ProductRepository>();
+                builder.Services.AddProxiedTransient<IProductRepository, ProductRepository>();
 
                 //managers
-                builder.Services.AddTransient<IProductManager, ProductManager>();
+                builder.Services.AddProxiedTransient<IProductManager, ProductManager>();
 
                 //other services
                 builder.Services.AddControllers();

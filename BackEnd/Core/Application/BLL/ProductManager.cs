@@ -1,4 +1,5 @@
-﻿using SampleGeneratedCodeApplication.Commons.Interfaces.BLL;
+﻿using SampleGeneratedCodeApplication.Commons.Attributes;
+using SampleGeneratedCodeApplication.Commons.Interfaces.BLL;
 using SampleGeneratedCodeApplication.Commons.Interfaces.Repositories;
 using SampleGeneratedCodeApplication.Features.Products.Queries;
 using SampleGeneratedCodeDomain.Commons;
@@ -21,6 +22,7 @@ namespace SampleGeneratedCodeApplication.BLL
             _productRepo = productRepo;
         }
 
+        [TraceAndTime]
         public async Task<(OperationStatusModel,ProductEntity?)> GetProductById(GetProductByIdQuery request)
         {
             OperationStatusModel response = new OperationStatusModel();

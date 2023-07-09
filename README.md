@@ -12,6 +12,7 @@
    <li>MediatR</li> 
    <li>Automapper</li> 
    <li>Dapper</li> 
+   <li>Castle.Core</li> 
 </ul>
 
 ### Pending to implement:

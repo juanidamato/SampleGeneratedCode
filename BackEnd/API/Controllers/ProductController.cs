@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SampleGeneratedCodeAPI.Utils;
+using SampleGeneratedCodeApplication.Commons.Interfaces.Utils;
 using SampleGeneratedCodeApplication.Features.Products.Queries;
 
 
@@ -13,9 +14,13 @@ namespace SampleGeneratedCodeAPI.Controllers
     {
         private readonly IMediator _mediator;
 
-        public ProductController(IMediator mediator)
+        public ProductController(IMediator mediator,IReverseHash rh)
         {
-            _mediator = mediator;  
+            _mediator = mediator;
+            string abc = rh.Encode(1500);
+            int[] n;
+            n = rh.Decode(abc);
+
         }
 
         [HttpGet]

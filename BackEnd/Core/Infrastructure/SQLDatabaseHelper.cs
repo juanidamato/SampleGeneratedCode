@@ -21,10 +21,14 @@ namespace SampleGeneratedCodeInfrastructure
             _config = config;
         }
 
-        public async Task<IEnumerable<T>> GetArrayDataAsync<T,U>( string command, U parameters)
+        public async Task<IEnumerable<T>> GetArrayDataAsync<T,U>( string command, U parameters, string currentUser = "")
         {
             using (IDbConnection db = new SqlConnection(_config.GetConnectionString("Default")))
             {
+                if (!string.IsNullOrWhiteSpace( currentUser))
+                {
+                    await db.ExecuteAsync("sys.sp_set_session_context",new {key="CurrentUser",value=currentUser}, commandType: CommandType.StoredProcedure);
+                }
                 return await db.QueryAsync<T>(command, parameters, commandType: CommandType.StoredProcedure);
             }
         }

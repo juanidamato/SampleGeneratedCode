@@ -9,7 +9,7 @@ namespace SampleGeneratedCodeApplication.Commons.Interfaces.Infrastructure
 {
     public interface IDatabaseHelper
     {
-        public Task<IEnumerable<T>> GetArrayDataAsync<T,U>( string command, U parameters);
+        public Task<IEnumerable<T>> GetArrayDataAsync<T,U>( string command, U parameters,string currentUser="");
         //public Task DoCommandAsync(dynamic config, string command, dynamic parameters);
     }
 }

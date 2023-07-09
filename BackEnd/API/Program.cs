@@ -5,6 +5,8 @@ using SampleGeneratedCodeApplication.Commons.Attributes;
 using SampleGeneratedCodeApplication.Commons.Interfaces.BLL;
 using SampleGeneratedCodeApplication.Commons.Interfaces.Infrastructure;
 using SampleGeneratedCodeApplication.Commons.Interfaces.Repositories;
+using SampleGeneratedCodeApplication.Commons.Interfaces.Utils;
+using SampleGeneratedCodeApplication.Commons.Utils;
 using SampleGeneratedCodeInfrastructure;
 using SampleGeneratedCodeInfrastructure.Repositories;
 using Serilog;
@@ -20,8 +22,8 @@ namespace SampleGeneratedCodeAPI
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            
-            
+
+
             _levelSwitch = new LoggingLevelSwitch();
             Console.WriteLine($"Environment:{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}");
             if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
@@ -50,6 +52,10 @@ namespace SampleGeneratedCodeAPI
                 builder.Services.AddSingleton(new ProxyGenerator());
                 builder.Services.AddTransient<IInterceptor, TraceAndTimeAttibuteInterceptor>();
 
+                //utils
+                builder.Services.AddSingleton<IReverseHash, ReverseHash>();
+
+
                 builder.Services.AddSampleGeneratedCodeApplication();
 
                 //persistence helper
@@ -68,6 +74,15 @@ namespace SampleGeneratedCodeAPI
                 builder.Services.AddSwaggerGen();
 
                 var app = builder.Build();
+
+                string? salt = app.Configuration.GetValue<string>("HashIdsSalt");
+                if (salt is null)
+                {
+                    salt = "should define a salt";
+                }
+                IReverseHash rh = app.Services.GetRequiredService<IReverseHash>();
+                rh.Init(salt);
+
 
                 // Configure the HTTP request pipeline.
                 if (app.Environment.IsDevelopment())
@@ -95,6 +110,7 @@ namespace SampleGeneratedCodeAPI
                 Log.CloseAndFlush();
             }
         }
+
         public static void changeLogLevel(LogEventLevel newLogLevel)
         {
             _levelSwitch!.MinimumLevel = newLogLevel;

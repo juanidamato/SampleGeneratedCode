@@ -14,13 +14,9 @@ namespace SampleGeneratedCodeAPI.Controllers
     {
         private readonly IMediator _mediator;
 
-        public ProductController(IMediator mediator,IReverseHash rh)
+        public ProductController(IMediator mediator)
         {
             _mediator = mediator;
-            string abc = rh.Encode(1500);
-            int[] n;
-            n = rh.Decode(abc);
-
         }
 
         [HttpGet]

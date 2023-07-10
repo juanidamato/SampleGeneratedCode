@@ -1,6 +1,8 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Identity.Web.Resource;
 using SampleGeneratedCodeAPI.Utils;
 using SampleGeneratedCodeApplication.Commons.Interfaces.Utils;
 using SampleGeneratedCodeApplication.Features.Products.Queries;
@@ -19,6 +21,8 @@ namespace SampleGeneratedCodeAPI.Controllers
             _mediator = mediator;
         }
 
+        [Authorize]
+        [RequiredScope("api.access")]
         [HttpGet]
         [Route("api/product/{id}")]
         public async Task<ActionResult> GetProductbyId(string id)

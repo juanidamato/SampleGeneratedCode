@@ -25,10 +25,10 @@ namespace SampleGeneratedCodeAPI.Controllers
 
         [HttpPost]
         [Route("api/token")]
-        public async Task<ActionResult> GetToken(CreateTokenInputDTO input)
+        public async Task<ActionResult> GetToken(CreateTokenInputDto input)
         {
             HttpMapperResultUtil mapperResultUtil = new();
-            OperationResultModel<CreateTokenOutputDTO> result=new OperationResultModel<CreateTokenOutputDTO>();
+            OperationResultModel<CreateTokenOutputDto> result=new OperationResultModel<CreateTokenOutputDto>();
             string access_token;
             //todo do a real implementation
             await Task.Delay(500);
@@ -38,7 +38,7 @@ namespace SampleGeneratedCodeAPI.Controllers
                 result.code = SampleGeneratedCodeDomain.Enums.OperationResultCodesEnum.OK;
                 result.message = "Generated Token";
                 access_token = GenerateToken();
-                result.payload = new CreateTokenOutputDTO();
+                result.payload = new CreateTokenOutputDto();
                 result.payload.access_token = access_token;
                 return mapperResultUtil.MapToActionResult(result);
             }

@@ -1,7 +1,7 @@
 ﻿namespace SampleGeneratedCodeAPI.Models
 {
-    public class CreateTokenOutputDTO
+    public class CreateTokenOutputDto
     {
-        public string access_token { get; set; }
+        public string access_token { get; set; } = string.Empty;
     }
 }

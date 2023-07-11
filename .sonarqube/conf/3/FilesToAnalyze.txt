@@ -1,0 +1,2 @@
+﻿C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\Core\Infrastructure\Repositories\ProductRepository.cs
+C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\Core\Infrastructure\SQLDatabaseHelper.cs

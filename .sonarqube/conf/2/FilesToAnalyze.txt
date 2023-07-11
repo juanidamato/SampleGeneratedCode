@@ -1,0 +1,16 @@
+﻿C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\Core\Application\BLL\GlobalVariables.cs
+C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\Core\Application\BLL\ProductManager.cs
+C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\Core\Application\Commons\Attributes\TraceAndTimeAttibuteInterceptor.cs
+C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\Core\Application\Commons\Attributes\TraceAndTimeAttribute.cs
+C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\Core\Application\Commons\Interfaces\BLL\IProductManager.cs
+C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\Core\Application\Commons\Interfaces\Infrastructure\IChacheHelper.cs
+C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\Core\Application\Commons\Interfaces\Infrastructure\IDatabaseHelper.cs
+C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\Core\Application\Commons\Interfaces\Infrastructure\IPublisherSubscriptionHelper.cs
+C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\Core\Application\Commons\Interfaces\Infrastructure\IQueueHelper.cs
+C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\Core\Application\Commons\Interfaces\Infrastructure\IStorageHelper.cs
+C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\Core\Application\Commons\Interfaces\Repositories\IProductRepository.cs
+C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\Core\Application\Commons\Interfaces\Utils\IReverseHash.cs
+C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\Core\Application\Commons\Utils\ReveseHash.cs
+C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\Core\Application\Commons\Utils\StringUtils.cs
+C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\Core\Application\ConfigureServices.cs
+C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\Core\Application\Features\Products\Queries\GetProductByIdQuery.cs

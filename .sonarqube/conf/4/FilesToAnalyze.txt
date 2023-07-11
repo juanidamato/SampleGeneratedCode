@@ -1,0 +1,13 @@
+﻿C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\API\Controllers\ProductController.cs
+C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\API\Controllers\TokenController.cs
+C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\API\Models\CreateTokenInputDTO.cs
+C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\API\Models\CreateTokenOutputDTO.cs
+C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\API\Program.cs
+C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\API\Utils\HttpMapperResultUtil.cs
+C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\API\obj\Debug\net6.0\SampleGeneratedCodeAPI.GlobalUsings.g.cs
+C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\API\obj\Debug\net6.0\.NETCoreApp,Version=v6.0.AssemblyAttributes.cs
+C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\API\obj\Debug\net6.0\SampleGeneratedCodeAPI.AssemblyInfo.cs
+C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\API\obj\Debug\net6.0\SampleGeneratedCodeAPI.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\API\appsettings.Development.json
+C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\API\appsettings.json
+C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\API\Properties\launchSettings.json

@@ -8,6 +8,6 @@ namespace SampleGeneratedCodeApplication.BLL
 {
     public static class GlobalVariables
     {
-        public static bool EnableTraceTime = true;
+        public static bool EnableTraceTime { get; set; } = true;
     }
 }

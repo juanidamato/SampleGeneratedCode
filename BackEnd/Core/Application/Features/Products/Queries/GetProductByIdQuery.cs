@@ -74,7 +74,7 @@ namespace SampleGeneratedCodeApplication.Features.Products.Queries
         public GetProductByIdQueryHandler(IMapper mapper,
                                           IProductManager productManager)
         {
-            _mapper = mapper;;
+            _mapper = mapper;
             _productManager = productManager;
         }
 
@@ -86,7 +86,8 @@ namespace SampleGeneratedCodeApplication.Features.Products.Queries
             (operation, oneProduct) = await _productManager.GetProductById(request);
             response.code = operation.code;
             response.message = operation.message;
-            if (operation.code == OperationResultCodesEnum.OK)
+            response.payload = null;
+            if (operation.code == OperationResultCodes.OK)
             {
                 response.payload = _mapper.Map<GetProductByIdQueryViewModel>(oneProduct);
             }

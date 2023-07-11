@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using SampleGeneratedCodeApplication.Commons.Attributes;
 using SampleGeneratedCodeApplication.Commons.Interfaces.Infrastructure;
 using SampleGeneratedCodeApplication.Commons.Interfaces.Repositories;
@@ -13,11 +14,13 @@ namespace SampleGeneratedCodeInfrastructure.Repositories
 {
     public class ProductRepository : IProductRepository
     {
-      
+        private readonly ILogger<ProductRepository> _logger;
         private readonly IDatabaseHelper _db;
 
-        public ProductRepository(IDatabaseHelper db)
+        public ProductRepository(ILogger<ProductRepository> logger,
+                                 IDatabaseHelper db)
         {
+            _logger = logger;
             _db = db;
         }
 
@@ -34,7 +37,7 @@ namespace SampleGeneratedCodeInfrastructure.Repositories
             }
             catch (Exception ex)
             {
-                //todo
+                _logger.LogError(ex, "Exception Error in GetByIdAsync");
                 return (false, null);
             }
             

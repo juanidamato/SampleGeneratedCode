@@ -9,8 +9,8 @@ namespace SampleGeneratedCodeDomain.Commons
 {
     public class OperationResultModel<T>
     {
-        public OperationResultCodesEnum code { get; set; }
+        public OperationResultCodes code { get; set; }
         public string message { get; set; } = string.Empty;
-        public T? payload;
+        public T? payload { get; set; } 
     }
 }

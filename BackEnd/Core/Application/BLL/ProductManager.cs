@@ -1,4 +1,5 @@
-﻿using SampleGeneratedCodeApplication.Commons.Attributes;
+﻿using Microsoft.Extensions.Logging;
+using SampleGeneratedCodeApplication.Commons.Attributes;
 using SampleGeneratedCodeApplication.Commons.Interfaces.BLL;
 using SampleGeneratedCodeApplication.Commons.Interfaces.Repositories;
 using SampleGeneratedCodeApplication.Features.Products.Queries;
@@ -15,10 +16,13 @@ namespace SampleGeneratedCodeApplication.BLL
 {
     public class ProductManager : IProductManager
     {
+        private readonly ILogger<ProductManager> _logger;
         private readonly IProductRepository _productRepo;
 
-        public ProductManager(IProductRepository productRepo)
+        public ProductManager(ILogger<ProductManager> logger,
+                              IProductRepository productRepo)
         {
+            _logger = logger;
             _productRepo = productRepo;
         }
 
@@ -35,7 +39,7 @@ namespace SampleGeneratedCodeApplication.BLL
                 var validationResult = validator.Validate(request);
                 if (!validationResult.IsValid)
                 {
-                    response.code = OperationResultCodesEnum.BAD_REQUEST;
+                    response.code = OperationResultCodes.BAD_REQUEST;
                     response.message = "Invalid request";
                     return (response,null);
                 }
@@ -43,24 +47,24 @@ namespace SampleGeneratedCodeApplication.BLL
                 (bolR, oneProduct) = await _productRepo.GetByIdAsync(request.Id);
                 if (!bolR)
                 {
-                    response.code = OperationResultCodesEnum.SERVER_ERROR;
+                    response.code = OperationResultCodes.SERVER_ERROR;
                     response.message = "Error getting product by id";
                     return (response, null);
                 }
                 if (oneProduct is null)
                 {
-                    response.code = OperationResultCodesEnum.NOT_FOUND;
+                    response.code = OperationResultCodes.NOT_FOUND;
                     response.message = "Product not found";
                     return (response, null);
                 }
-                response.code = OperationResultCodesEnum.OK;
+                response.code = OperationResultCodes.OK;
                 response.message = "Product found";
                 return (response, oneProduct);
             }
             catch (Exception ex)
             {
-                //todo
-                response.code = OperationResultCodesEnum.SERVER_ERROR;
+                _logger.LogError(ex, "Exception GetProductById");
+                response.code = OperationResultCodes.SERVER_ERROR;
                 response.message = "Exception getting product by id";
                 return (response, null);
             }

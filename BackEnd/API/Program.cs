@@ -20,7 +20,7 @@ using System.Text;
 
 namespace SampleGeneratedCodeAPI
 {
-    public class Program
+    public static class Program
     {
         private static LoggingLevelSwitch? _levelSwitch;
 
@@ -64,7 +64,7 @@ namespace SampleGeneratedCodeAPI
                 builder.Services.AddSampleGeneratedCodeApplication();
 
                 //persistence helper
-                builder.Services.AddTransient<IDatabaseHelper, SQLDatabaseHelper>();
+                builder.Services.AddTransient<IDatabaseHelper, SqlDatabaseHelper>();
 
                 //repositories
                 builder.Services.AddProxiedTransient<IProductRepository, ProductRepository>();
@@ -121,7 +121,7 @@ namespace SampleGeneratedCodeAPI
                              Id = "Bearer"
                            }
                           },
-                          new string[] { }
+                          Array.Empty<string>()
                         }
                       });
                 });

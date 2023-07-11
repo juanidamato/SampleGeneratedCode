@@ -12,11 +12,11 @@ using Microsoft.Extensions.Configuration;
 
 namespace SampleGeneratedCodeInfrastructure
 {
-    public class SQLDatabaseHelper : IDatabaseHelper
+    public class SqlDatabaseHelper : IDatabaseHelper
     {
         private readonly IConfiguration _config;
 
-        public SQLDatabaseHelper(IConfiguration config)
+        public SqlDatabaseHelper(IConfiguration config)
         {
             _config = config;
         }
@@ -33,9 +33,17 @@ namespace SampleGeneratedCodeInfrastructure
             }
         }
 
-        //public async Task DoCommandAsync(dynamic config, string command, dynamic parameters)
-        //{
+        public async Task DoCommandAsync<U>(string command, U parameters, string currentUser = "")
+        {
+            using (IDbConnection db = new SqlConnection(_config.GetConnectionString("Default")))
+            {
+                if (!string.IsNullOrWhiteSpace(currentUser))
+                {
+                    await db.ExecuteAsync("sys.sp_set_session_context", new { key = "CurrentUser", value = currentUser }, commandType: CommandType.StoredProcedure);
+                }
+                await db.ExecuteAsync(command, parameters, commandType: CommandType.StoredProcedure);
+            }
+        }
 
-        //}
     }
 }

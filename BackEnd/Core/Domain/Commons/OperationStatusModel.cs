@@ -9,7 +9,7 @@ namespace SampleGeneratedCodeDomain.Commons
 {
     public class OperationStatusModel
     {
-        public OperationResultCodesEnum code { get; set; }
+        public OperationResultCodes code { get; set; }
         public string message { get; set; } = string.Empty;
     }
 }

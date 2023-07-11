@@ -30,12 +30,12 @@ namespace SampleGeneratedCodeAPI.Controllers
             HttpMapperResultUtil mapperResultUtil = new();
             OperationResultModel<CreateTokenOutputDto> result=new OperationResultModel<CreateTokenOutputDto>();
             string access_token;
-            //todo do a real implementation
+            //in real life you have to do a real implementation
             await Task.Delay(500);
 
             if (input.User == "admin" && input.Password == "admin")
             {
-                result.code = SampleGeneratedCodeDomain.Enums.OperationResultCodesEnum.OK;
+                result.code = SampleGeneratedCodeDomain.Enums.OperationResultCodes.OK;
                 result.message = "Generated Token";
                 access_token = GenerateToken();
                 result.payload = new CreateTokenOutputDto();
@@ -44,7 +44,7 @@ namespace SampleGeneratedCodeAPI.Controllers
             }
             else
             {
-                result.code = SampleGeneratedCodeDomain.Enums.OperationResultCodesEnum.FORBIDDEN;
+                result.code = SampleGeneratedCodeDomain.Enums.OperationResultCodes.FORBIDDEN;
                 result.message = "Invalid credentials (use admin,admin for sample code)";
                 return mapperResultUtil.MapToActionResult(result);
             }

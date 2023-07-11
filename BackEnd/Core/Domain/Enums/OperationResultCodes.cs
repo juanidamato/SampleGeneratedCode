@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SampleGeneratedCodeDomain.Enums
 {
-    public enum OperationResultCodesEnum
+    public enum OperationResultCodes
     {
         OK=200,
         CREATED=201,

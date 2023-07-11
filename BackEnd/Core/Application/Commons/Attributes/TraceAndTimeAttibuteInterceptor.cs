@@ -32,7 +32,7 @@ namespace SampleGeneratedCodeApplication.Commons.Attributes
             System.Diagnostics.Stopwatch? watch=null;
             try
             {
-                _logger.LogInformation($"Enter to method:{@methodName}");
+                _logger.LogInformation("Enter to method:{@methodName}", methodName);
                 if (GlobalVariables.EnableTraceTime)
                 {
                    watch = System.Diagnostics.Stopwatch.StartNew();
@@ -42,7 +42,7 @@ namespace SampleGeneratedCodeApplication.Commons.Attributes
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex,$"Exception in method:{@methodName}");
+                _logger.LogError(ex, "Exception in method:{@methodName}", methodName);
             }
             finally
             {
@@ -50,10 +50,10 @@ namespace SampleGeneratedCodeApplication.Commons.Attributes
                 {
                     watch!.Stop();
                     var elapsedMs = watch.ElapsedMilliseconds;
-                    _logger.LogInformation($"Time taken for method:{@methodName} {@elapsedMs} ms");
+                    _logger.LogInformation("Time taken for method:{@methodName} @{elapsedMs} ms", methodName, elapsedMs);
 
                 }
-                _logger.LogInformation($"Exit from method:{@methodName}");
+                _logger.LogInformation("Exit from method:{@methodName}", methodName);
             }
         }
     }

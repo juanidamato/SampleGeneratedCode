@@ -17,7 +17,7 @@ namespace SampleGeneratedCodeApplication.Commons.Utils
                 return false;
             }
             for(int i=0;i<=value.Length-1;i++) { 
-                if (ValidLatinCharacters.IndexOf(  value.Substring(i,1)  )==-1 )
+                if (!ValidLatinCharacters.Contains(value.Substring(i,1), StringComparison.CurrentCulture))
                 {
                     return false;
                 }

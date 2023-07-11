@@ -1,4 +1,4 @@
 ﻿C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\Core\Domain\Commons\OperationResultModel.cs
 C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\Core\Domain\Commons\OperationStatusModel.cs
 C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\Core\Domain\Entities\ProductEntity.cs
-C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\Core\Domain\Enums\OperationResultCodesEnum.cs
+C:\Users\juani\source\repos\SampleGeneratedCode\BackEnd\Core\Domain\Enums\OperationResultCodes.cs

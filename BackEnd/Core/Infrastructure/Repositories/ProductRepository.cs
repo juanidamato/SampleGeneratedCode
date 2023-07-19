@@ -29,7 +29,7 @@ namespace SampleGeneratedCodeInfrastructure.Repositories
         {
             try
             {
-                var r = await _db.GetArrayDataAsync<ProductEntity, dynamic>("Product_GetById", new { IdProduct = id });
+                var r = await _db.GetArrayDataAsync<ProductEntity, dynamic>("Product_Select_ByPK", new { IdProduct = id });
              
                 var element = r.FirstOrDefault<ProductEntity?>();
                 return (true,element);

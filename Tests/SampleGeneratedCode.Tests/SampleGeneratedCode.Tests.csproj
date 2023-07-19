@@ -29,6 +29,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\BackEnd\Core\Application\SampleGeneratedCodeApplication.csproj" />
+    <ProjectReference Include="..\..\BackEnd\Core\Infrastructure\SampleGeneratedCodeInfrastructure.csproj" />
   </ItemGroup>
 
 </Project>

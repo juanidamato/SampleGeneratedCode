@@ -13,6 +13,8 @@
    <li>Automapper</li> 
    <li>Dapper</li> 
    <li>Castle.Core</li> 
+   <li>HashIds</li> 
+   <li>Moq</li> 
 </ul>
 
 ### Pending to implement:

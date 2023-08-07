@@ -26,4 +26,5 @@
 </ul>
 
 
-![clean](https://github.com/juanidamato/SampleGeneratedCode/assets/16365314/3a67cbc4-0b00-4a5c-882f-3cb2bc25a65d)
+
+![clean drawio](https://github.com/juanidamato/SampleGeneratedCode/assets/16365314/d61a6355-6169-4db8-972f-cc169e698cdc)

@@ -27,5 +27,9 @@
 
 
 
+![Clean-Architecture-2](https://github.com/juanidamato/SampleGeneratedCode/assets/16365314/fc2895fd-56d4-4e87-8277-2217baa688eb)
+
+
+
 ![clean drawio](https://github.com/juanidamato/SampleGeneratedCode/assets/16365314/6bf8733b-c22a-4e6b-839c-219e8bddcecb)
 
